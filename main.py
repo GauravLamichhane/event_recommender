@@ -63,9 +63,3 @@ async def get_recommendations(request: RecommendationRequest):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/recommend/{user_id}")
-async def get_user_recommendations_by_id(user_id: int, limit: int = 10):
-    """Convenient endpoint to get recommendations for a specific user."""
-    request = RecommendationRequest(user_id=user_id, limit=limit)
-    return await get_recommendations(request)
